@@ -1,0 +1,44 @@
+.gamecell {
+    box-sizing: border-box;
+    border: 2px solid black;
+    border-left: none;
+
+    cursor: pointer;
+}
+
+.gamecell:hover {
+    background-color: #EEE;
+}
+
+.gamecell--disabled {
+    cursor: default;
+}
+
+.gamecell--disabled:hover {
+    background-color: transparent;
+}
+
+.gamecell_row--top {
+    border-top: none;
+}
+
+.gamecell_row--middle {
+    border-top: none;
+}
+
+.gamecell_row--bottom {
+    border-top: none;
+    border-bottom: none;
+}
+
+/* .gamecell_col--left {
+
+} */
+
+.gamecell_col--right {
+    border-right: none;
+}
+
+/* .gamecell_col--middle {
+
+} */

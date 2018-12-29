@@ -1,28 +1,55 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import GameBoard from './Components/GameBoard/GameBoard';
+const DEFAULT_SIZE = 3;
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+    constructor(props) {
+        super();
+
+        this.state = {
+            size: DEFAULT_SIZE,
+            board: <GameBoard size={DEFAULT_SIZE}></GameBoard>
+        }
+
+        this.resetBoard = this.resetBoard.bind(this);
+        this.handleTextChange = this.handleTextChange.bind(this);
+    }
+
+    handleTextChange(event) {
+        let newSize = parseInt(event.target.value);
+
+        if (isNaN(newSize)) {
+            newSize = '';
+        }
+
+        // if (isNaN(newSize)) {
+        //     console.log('isNaN')
+        //     newSize = 0;
+        // }
+
+        this.setState({size: newSize});
+    }
+
+    resetBoard(event) {
+        event.preventDefault();
+
+        this.setState({board: ''});
+        setTimeout(() => {
+            this.setState({board: <GameBoard size={this.state.size}></GameBoard>});
+        }, 0)
+    }
+
+    render() {
+        return (
+            <React.Fragment>
+                <form onSubmit={this.resetBoard}>
+                    <input type="text" value={this.state.size} onChange={this.handleTextChange}></input>
+                    <input type="submit" value="Reset"></input>
+                </form>
+                {this.state.board}
+            </React.Fragment>
+        );
+    }
 }
 
 export default App;
